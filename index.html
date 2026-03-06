@@ -2,106 +2,122 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>PV Training - Station De Klomp</title>
+    <title>PV Training - Station Veenendaal-De Klomp</title>
     <style>
         body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f8f9fa; color: #333; margin: 40px; line-height: 1.6; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 40px; border-radius: 4px; border: 1px solid #dee2e6; }
+        .container { max-width: 950px; margin: auto; background: white; padding: 40px; border-radius: 4px; border: 1px solid #dee2e6; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         
         h1, h3 { color: #003366; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         
+        /* Instructieblokje */
+        .instructie-box { background-color: #eef6ff; border-left: 6px solid #004b99; padding: 20px; margin-bottom: 30px; border-radius: 4px; }
+        .instructie-box ul { margin: 10px 0 0 20px; padding: 0; }
+
         /* OC Melding */
         .oc-box { background: #f1f3f5; border: 1px solid #ced4da; padding: 25px; margin-bottom: 30px; border-radius: 4px; }
-        .hidden-tekst { display: none; margin-top: 20px; padding: 15px; background: #fff; border: 1px solid #dee2e6; line-height: 1.8; }
+        .hidden-tekst { display: none; margin-top: 20px; padding: 15px; background: #fff; border: 1px solid #dee2e6; line-height: 1.8; font-style: italic; }
 
         /* Afbeeldingen */
         .img-grid { display: flex; gap: 20px; margin-bottom: 30px; }
         .img-card { flex: 1; }
-        .img-card img { width: 100%; border: 1px solid #ccc; border-radius: 2px; }
-        .img-caption { font-size: 0.85em; color: #666; margin-top: 5px; }
+        .img-card img { width: 100%; border: 1px solid #ccc; border-radius: 2px; display: block; }
+        .img-caption { font-size: 0.85em; color: #666; margin-top: 5px; text-align: center; }
 
         /* Secties */
         .section { margin-bottom: 40px; padding: 20px; border: 1px solid #eee; border-radius: 4px; }
-        textarea { width: 100%; border: 1px solid #ced4da; padding: 15px; font-size: 15px; resize: vertical; box-sizing: border-box; }
-        input, select { padding: 10px; margin: 10px 0; width: 100%; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; }
+        textarea { width: 100%; border: 1px solid #ced4da; padding: 15px; font-size: 15px; resize: vertical; box-sizing: border-box; font-family: inherit; }
+        input, select { padding: 12px; margin: 10px 0; width: 100%; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; }
         
         /* Knoppen */
-        button { background: #003366; color: white; padding: 12px 20px; border: none; cursor: pointer; border-radius: 4px; font-size: 14px; margin-right: 10px; }
+        button { background: #003366; color: white; padding: 12px 20px; border: none; cursor: pointer; border-radius: 4px; font-size: 14px; margin-right: 10px; font-weight: bold; }
         button:hover { background: #002244; }
         .btn-reset { background: #6c757d; margin-top: 40px; width: 100%; }
+        .btn-reset:hover { background: #5a6268; }
         
         /* Live Feed */
-        .feed-container { background: #fff; border: 1px solid #ced4da; padding: 20px; height: 300px; overflow-y: scroll; font-size: 0.95em; }
-        .feed-entry { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #f1f3f5; }
-        .feed-name { font-weight: bold; color: #003366; display: block; margin-bottom: 5px; }
+        .feed-container { background: #fff; border: 1px solid #ced4da; padding: 20px; height: 350px; overflow-y: scroll; font-size: 0.95em; }
+        .feed-entry { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f1f3f5; }
+        .feed-name { font-weight: bold; color: #003366; display: block; margin-bottom: 5px; border-left: 4px solid #003366; padding-left: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>PV Bevindingen Oefening</h1>
+    <h1>PV Bevindingen Oefening: Station De Klomp</h1>
+
+    <div class="instructie-box">
+        <h3>Richtlijnen voor het Proces-verbaal</h3>
+        <p>Gebruik bij deze oefening de <strong>ik-vorm</strong> en schrijf <strong>filmisch</strong> in de <strong>onvoltooid verleden tijd (ovt)</strong>. Let op de volgende punten:</p>
+        <ul>
+            <li>Verzamel feiten en omstandigheden in 'redenen van wetenschap'.</li>
+            <li>Vermeld de aanhouding met toelichting (waarom en op basis waarvan).</li>
+            <li>Schrijf de cautie volledig uit zoals deze is meegedeeld.</li>
+            <li>Noteer dag, datum en tijden van vervoer en aankomst bij bureau Veenendaal.</li>
+        </ul>
+    </div>
 
     <div class="oc-box">
-        <h3>Melding Operationeel Centrum</h3>
-        <p>Luister aandachtig naar de melding via de portofoon:</p>
+        <h3>Melding Operationeel Centrum (OC)</h3>
+        <p>Start de portofoonmelding om de casus te horen:</p>
         <button onclick="playMelding()">▶ Bericht Afspelen</button>
         <button onclick="pauseMelding()">⏸ Pauze</button>
         <button onclick="stopMelding()">🔄 Opnieuw</button>
         
         <div id="ocTekst" class="hidden-tekst">
             <strong>Transcript melding:</strong><br>
-            "Een collega in burger ziet op station Veenendaal-De Klomp een man, atletisch gebouwd, rond de 1.80 m, met een licht getinte huid, zwart petje op, blauw trainingsjack met witte strepen op de mouwen, blauwe spijkerbroek en opvallend groene sportschoenen langs de fietsen lopen in de fietsenstalling. Bij nieuwe fietsen bleef deze man stilstaan. Hij pakte zijn telefoon, richtte de achterzijde van de telefoon op de fiets en daarna bracht hij de telefoon naar zijn rechteroor. De collega ziet dat ongeveer vijf minuten later zich een persoon bij deze man voegt. Deze persoon is korter dan persoon 1 en draagt een volledig zwarte sportoutfit. Opvallend dat deze persoon witte sokken draagt. U krijgt toestemming om deze man aan te houden."
+            "Een <strong>collega</strong> in burger ziet op station Veenendaal-De Klomp een man, atletisch gebouwd, rond de 1.80 m, met een licht getinte huid, zwart petje op, blauw trainingsjack met witte strepen op de mouwen, blauwe spijkerbroek en opvallend groene sportschoenen langs de fietsen lopen in de fietsenstalling. Bij nieuwe fietsen bleef deze man stilstaan. Hij pakte zijn telefoon, richtte de achterzijde van de telefoon op de fiets en daarna bracht hij de telefoon naar zijn rechteroor. De collega ziet dat ongeveer vijf minuten later zich een persoon bij deze man voegt. Deze persoon is korter dan persoon 1 en draagt een volledig zwarte sportoutfit. Opvallend dat deze persoon witte sokken draagt. U krijgt toestemming om deze man aan te houden."
         </div>
     </div>
 
     <div class="img-grid">
         <div class="img-card">
             <img src="verdachte1.jpg" alt="Signalement persoon 1">
-            <div class="img-caption">Beeld 1: Persoon 1 bij fietsenstalling</div>
+            <div class="img-caption">CCTV: Persoon 1 (Observatie door collega in burger op achtergrond)</div>
         </div>
         <div class="img-card">
             <img src="duo_verdachten.jpg" alt="Beide verdachten">
-            <div class="img-caption">Beeld 2: Persoon 1 en 2 samen</div>
+            <div class="img-caption">CCTV: Ontmoeting met persoon 2</div>
         </div>
     </div>
 
     <div id="loginSection" class="section">
-        <h3>Sessie starten</h3>
-        <label>Selecteer de klas:</label>
+        <h3>DAA Koppeling (Koppel studenten aan klas)</h3>
+        <label>Selecteer klas:</label>
         <select id="klas">
             <option>Delta</option><option>Echo</option><option>Foxtrot</option>
             <option>Golf</option><option>Juliett</option><option>Lima</option><option>Mike</option>
         </select>
-        <input type="text" id="naam1" placeholder="Naam eerste student">
-        <input type="text" id="naam2" placeholder="Naam tweede student">
-        <button onclick="login()">Bevestig Duo & Start</button>
+        <input type="text" id="naam1" placeholder="Naam student 1">
+        <input type="text" id="naam2" placeholder="Naam student 2">
+        <button onclick="login()">Bevestig Koppeling & Start</button>
     </div>
 
     <div id="werkruimte" class="section" style="display:none;">
-        <h3>Werkveld: <span id="duoLabel"></span></h3>
-        <p>Stel het Proces-verbaal van Bevindingen op. Let op de ik-vorm en de filmische beschrijving in de ovt.</p>
-        <textarea id="pvInput" rows="12" placeholder="Begin hier met schrijven..."></textarea>
+        <h3>Werkveld: <span id="duoLabel" style="color: #003366;"></span></h3>
+        <textarea id="pvInput" rows="12" placeholder="Begin hier met je filmische PV in de ik-vorm (ovt)..."></textarea>
         <button onclick="sendFeed('PV')" style="margin-top:15px;">Plaats PV in Feed</button>
 
-        <h4 style="margin-top:30px;">Feedback op collega's</h4>
-        <textarea id="fbInput" rows="3" placeholder="Geef feedback op het PV van een ander koppel..."></textarea>
+        <h4 style="margin-top:30px;">Feedback op medestudenten</h4>
+        <textarea id="fbInput" rows="3" placeholder="Typ hier feedback op een ander duo..."></textarea>
         <button onclick="sendFeed('Feedback')" style="margin-top:10px; background:#495057;">Plaats Feedback</button>
     </div>
 
-    <h3>Klasoverzicht (Live Feed)</h3>
+    <h3>Live Feed (Zonder tijdstempels)</h3>
     <div id="liveFeed" class="feed-container">
-        <em>Wachten op bijdragen van studenten...</em>
+        <em>Systeem gereed. Wachten op bijdragen van studenten...</em>
     </div>
 
-    <button class="btn-reset" onclick="resetAll()">Reset voor volgende klas</button>
+    <button class="btn-reset" onclick="resetAll()">🔄 Reset Pagina (Nieuwe Klas/Sessie)</button>
 </div>
 
 <script>
     const synth = window.speechSynthesis;
-    let utterance = new SpeechSynthesisUtterance("Bericht van het Operationeel Centrum. Een collega in burger ziet op station Veenendaal-De Klomp een man, atletisch gebouwd, rond de één meter tachtig, met een licht getinte huid, zwart petje op, blauw trainingsjack met witte strepen op de mouwen, blauwe spijkerbroek en opvallend groene sportschoenen langs de fietsen lopen in de fietsenstalling. Bij nieuwe fietsen bleef deze man stilstaan. Hij pakte zijn telefoon, richtte de achterzijde van de telefoon op de fiets en daarna bracht hij de telefoon naar zijn rechteroor. De collega ziet dat ongeveer vijf minuten later zich een persoon bij deze man voegt. Deze persoon is korter dan persoon 1 en draagt een volledig zwarte sportoutfit. Opvallend dat deze persoon witte sokken draagt. U krijgt toestemming om deze man aan te houden.");
+    const ocBericht = "Bericht van het Operationeel Centrum. Een collega in burger ziet op station Veenendaal-De Klomp een man, atletisch gebouwd, rond de één meter tachtig, met een licht getinte huid, zwart petje op, blauw trainingsjack met witte strepen op de mouwen, blauwe spijkerbroek en opvallend groene sportschoenen langs de fietsen lopen in de fietsenstalling. Bij nieuwe fietsen bleef deze man stilstaan. Hij pakte zijn telefoon, richtte de achterzijde van de telefoon op de fiets en daarna bracht hij de telefoon naar zijn rechteroor. De collega ziet dat ongeveer vijf minuten later zich een persoon bij deze man voegt. Deze persoon is korter dan persoon 1 en draagt een volledig zwarte sportoutfit. Opvallend dat deze persoon witte sokken draagt. U krijgt toestemming om deze man aan te houden.";
+    
+    let utterance = new SpeechSynthesisUtterance(ocBericht);
     utterance.lang = 'nl-NL';
-    utterance.rate = 0.9;
+    utterance.rate = 0.92;
 
-    // Tekst pas zichtbaar na audio
     utterance.onend = () => { document.getElementById('ocTekst').style.display = 'block'; };
 
     function playMelding() { synth.speak(utterance); }
@@ -120,8 +136,8 @@
             document.getElementById('loginSection').style.display = 'none';
             document.getElementById('werkruimte').style.display = 'block';
             document.getElementById('duoLabel').innerText = `Klas ${k}: ${n1} & ${n2}`;
-            addEntry("SYSTEEM", `Duo ${n1} & ${n2} is gestart met de opdracht.`);
-        } else { alert("Beide namen moeten worden ingevuld door de docent."); }
+            addEntry("SYSTEEM", `Duo ${n1} & ${n2} is succesvol gekoppeld.`);
+        } else { alert("Vul beide studentennamen in om te kunnen koppelen."); }
     }
 
     function sendFeed(type) {
@@ -141,7 +157,7 @@
     }
 
     function resetAll() {
-        if(confirm("Weet u zeker dat u de pagina wilt resetten? Alle huidige tekst wordt gewist.")) {
+        if(confirm("Weet u zeker dat u de pagina wilt resetten? Alle ingevoerde teksten gaan verloren.")) {
             location.reload();
         }
     }
